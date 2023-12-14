@@ -3,7 +3,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 
-st.header("Klasifikasi Artikel Berita Dengan Reduksi Dimensi", divider='rainbow')
+st.header("Klasifikasi Artikel Berita LDA beritajatim", divider='rainbow')
 text = st.text_area("Masukkan Artikel Berita")
 
 button = st.button("Submit")
