@@ -48,11 +48,12 @@ if selected == "Dataset Information":
 
 
 elif selected == "Klasifikasi":
-  if st.session_state.nb_reduksi:
-      nb_lda = st.tabs(["Model Naive Bayes(LDA)"])
-      
-      with nb_lda:
-        st.write(f"Prediction Category : {st.session_state.nb_reduksi}")
+    if st.session_state.nb_reduksi:
+        nb_lda = st.empty()  # Membuat tab untuk model Naive Bayes (LDA)
+        st.tabs(["Model Naive Bayes(LDA)"])  # Menambahkan tab untuk model Naive Bayes (LDA)
+        
+        with nb_lda:
+            st.write(f"Prediction Category : {st.session_state.nb_reduksi}")
 
         
         
