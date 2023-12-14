@@ -15,18 +15,19 @@ if "nb_reduksi" not in st.session_state:
 if button:
     vectorizer = joblib.load("vectorizer.pkl")
     tfidf_matrics = vectorizer.transform([text]).toarray()
+    st.write(tfidf_matrics.shape)  # Check the shape of tfidf_matrics
     
-    # Predict Model Naive Bayes Reduksi
     model_reduksi = joblib.load("NB_reduksi.pkl")
     lda = joblib.load("lda.pkl")
+
+    st.write(lda.components_.shape)  # Check the shape of LDA model's components
+    
+    # Check if the shapes match or if they require reshaping or preprocessing for alignment
+
     lda_transform = lda.transform(tfidf_matrics)
+    
     prediction_reduksi = model_reduksi.predict(lda_transform)
     st.session_state.nb_reduksi = prediction_reduksi[0]
-    
-    # Predict Model Naive Bayes Tanpa Reduksi
-    model_asli = joblib.load("NB_Asli.pkl")
-    prediction_asli = model_asli.predict(tfidf_matrics)
-    st.session_state.nb_asli = prediction_asli[0]
 
 selected = option_menu(
   menu_title="",
