@@ -49,10 +49,13 @@ if selected == "Dataset Information":
 
 elif selected == "Klasifikasi":
   if st.session_state.nb_reduksi:
-      nb_lda = st.tabs(["Model Naive Bayes(LDA)"])
+      nb_lda, nb_NonLDA = st.tabs(["Model Naive Bayes(LDA)", "Model Naive Bayes (Tanpa LDA)"])
       
       with nb_lda:
         st.write(f"Prediction Category : {st.session_state.nb_reduksi}")
+        
+      with nb_NonLDA:
+        st.write(f"Prediction Category : {st.session_state.nb_asli}")
         
         
 elif selected == "History Uji Coba":
