@@ -24,7 +24,7 @@ if button:
     st.session_state.nb_reduksi = prediction_reduksi[0]
     
     # Predict Model Naive Bayes Tanpa Reduksi
-    model_asli = joblib.load("resources/NB_Asli.pkl")
+    model_asli = joblib.load("NB_Asli.pkl")
     prediction_asli = model_asli.predict(tfidf_matrics)
     st.session_state.nb_asli = prediction_asli[0]
 
