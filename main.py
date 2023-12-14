@@ -21,7 +21,7 @@ if button:
     lda = joblib.load("lda.pkl")
     lda_transform = lda.transform(tfidf_matrics)
     prediction_reduksi = model_reduksi.predict(lda_transform)
-    st.session_state.nb_reduksi = prediction_reduksi[0]
+    st.session_state.naivebayes = prediction_reduksi[0]
 
 selected = option_menu(
   menu_title="",
@@ -42,8 +42,8 @@ elif selected == "Klasifikasi":
       nb_lda, nb_NonLDA = st.tabs(["Model Naive Bayes(LDA)"])
       
       with nb_lda:
-        st.write(f"Prediction Category : {st.session_state.nb_reduksi}")
+        st.write(f"Prediction Category : {st.session_state.naivebayes}")
         
 elif selected == "History Uji Coba":
     st.write("Hasil Uji Coba")
-    st.dataframe(pd.read_csv('resources/history.csv'), use_container_width=True)
+    st.dataframe(pd.read_csv('history.csv'), use_container_width=True)
