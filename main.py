@@ -20,14 +20,19 @@ if button:
     model_reduksi = joblib.load("NB_reduksi.pkl")
     lda = joblib.load("lda.pkl")
 
-    st.write(lda.components_.shape)  # Check the shape of LDA model's components
+    lda_components_shape = lda.components_.shape
+    st.write(lda_components_shape)  # Check the shape of LDA model's components
     
-    # Check if the shapes match or if they require reshaping or preprocessing for alignment
+    # Ensure the number of features in tfidf_matrics matches lda_components_shape
+    # Reshape or preprocess if necessary to align dimensions
 
-    lda_transform = lda.transform(tfidf_matrics)
-    
-    prediction_reduksi = model_reduksi.predict(lda_transform)
-    st.session_state.nb_reduksi = prediction_reduksi[0]
+    try:
+        lda_transform = lda.transform(tfidf_matrics)
+        prediction_reduksi = model_reduksi.predict(lda_transform)
+        st.session_state.nb_reduksi = prediction_reduksi[0]
+    except ValueError as e:
+        st.error(f"ValueError: {e}")
+
 
 selected = option_menu(
   menu_title="",
