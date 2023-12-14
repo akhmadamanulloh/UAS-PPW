@@ -8,9 +8,8 @@ text = st.text_area("Masukkan Artikel Berita")
 
 button = st.button("Submit")
 
-if "nb_reduksi" not in st.session_state:
+if "naivebayes" not in st.session_state:
     st.session_state.nb_reduksi = []
-    st.session_state.nb_asli = []
 
 if button:
     vectorizer = joblib.load("vectorizer.pkl")
