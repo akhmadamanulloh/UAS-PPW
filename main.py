@@ -10,7 +10,6 @@ button = st.button("Submit")
 
 if "nb_reduksi" not in st.session_state:
     st.session_state.nb_reduksi = []
-    st.session_state.nb_asli = []
 
 if button:
     vectorizer = joblib.load("vectorizer.pkl")
