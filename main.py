@@ -8,7 +8,7 @@ text = st.text_area("Masukkan Artikel Berita")
 
 button = st.button("Submit")
 
-if "naivebayes" not in st.session_state:
+if "naivebayes" not in st.session_state:l
     st.session_state.nb_reduksi = []
 
 if button:
