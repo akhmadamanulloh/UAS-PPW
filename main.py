@@ -8,7 +8,7 @@ text = st.text_area("Masukkan Artikel Berita")
 
 button = st.button("Submit")
 
-if "naivebayes" not in st.session_state:l
+if "nb_reduksi" not in st.session_state:
     st.session_state.nb_reduksi = []
 
 if button:
@@ -16,11 +16,11 @@ if button:
     tfidf_matrics = vectorizer.transform([text]).toarray()
     
     # Predict Model Naive Bayes Reduksi
-    model_reduksi = joblib.load("naivebayes.pkl")
-    lda = joblib.load("lda.pkl")
+    model_reduksi = joblib.load("NB_reduksi.pkl")
+    lda = joblib.load("resources/lda.pkl")
     lda_transform = lda.transform(tfidf_matrics)
     prediction_reduksi = model_reduksi.predict(lda_transform)
-    st.session_state.naivebayes = prediction_reduksi[0]
+    st.session_state.nb_reduksi = prediction_reduksi[0]
 
 selected = option_menu(
   menu_title="",
@@ -38,10 +38,11 @@ if selected == "Dataset Information":
 
 elif selected == "Klasifikasi":
   if st.session_state.nb_reduksi:
-      nb_lda = st.tabs(["Model Naive Bayes(LDA)"])
+      nb_lda = st.tabs(["Model Naive Bayes(LDA)")
       
       with nb_lda:
-        st.write(f"Prediction Category : {st.session_state.naivebayes}")
+        st.write(f"Prediction Category : {st.session_state.nb_reduksi}")
+        
         
 elif selected == "History Uji Coba":
     st.write("Hasil Uji Coba")
