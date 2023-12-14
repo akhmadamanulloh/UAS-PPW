@@ -14,6 +14,7 @@ if "nb_reduksi" not in st.session_state:
 if button:
     vectorizer = joblib.load("vectorizer.pkl")
     tfidf_matrics = vectorizer.transform([text]).toarray()
+    st.write(tfidf_matrics.shape)
     
     # Predict Model Naive Bayes Reduksi
     model_reduksi = joblib.load("NB_reduksi.pkl")
